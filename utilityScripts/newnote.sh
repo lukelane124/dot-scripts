@@ -25,17 +25,20 @@ spaceToUnderscore $user_title
 Title=$RESULT
 
 
-Folder="${BASE_NOTES_DIR}/${Project}/${Title}"
-
+filePrefix="${CURRENT_DATE}_${Title}"
+fileName="${Title}.org"
+Folder="${BASE_NOTES_DIR}/${Project}/${filePrefix}"
 if [ ! -d $Folder ]
 then
 	mkdir -p $Folder
 fi
 
-fileName="${CURRENT_DATE}_${Title}.org"
 filePath="${Folder}/${fileName}"
 touch $filePath && \
 echo "#+TITLE: ${user_title}" >> $filePath && \
 echo "#+TODO: ${TODO_OPTIONS}" >> $filePath && \
+echo "" >> $filePath && \
 sync && \
 "C:\Program Files\Emacs\x86_64\bin\runemacs.exe" "$filePath"
+cd $Folder
+"explorer.exe" ".\\"
