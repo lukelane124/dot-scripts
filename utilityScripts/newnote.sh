@@ -34,6 +34,7 @@ then
 fi
 
 filePath="${Folder}/${fileName}"
+mkdir "${filePath}/img"
 touch $filePath && \
 echo "#+TITLE: ${user_title}" >> $filePath && \
 echo "#+TODO: ${TODO_OPTIONS}" >> $filePath && \
